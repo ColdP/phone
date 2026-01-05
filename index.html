@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUJI Phone 2 - The Masterpiece</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #000000;
+            overflow-x: hidden;
+        }
+        
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Bento Grid Specifics */
+        .bento-card {
+            background-color: #f8f8f8;
+            border: 1px solid #e5e5e5;
+            transition: all 0.3s ease;
+        }
+        
+        .bento-card:hover {
+            border-color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .text-balance {
+            text-wrap: balance;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #000;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-black selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <img src="https://fuji-phone.btm-m.site/FUJI_Phone.svg" alt="FUJI Phone" class="h-6 w-auto">
+            </div>
+            <div class="flex items-center gap-6 text-sm font-medium">
+                <button onclick="setLang('zh')" class="hover:text-gray-500 transition-colors lang-btn" data-active="zh">CN</button>
+                <button onclick="setLang('en')" class="text-gray-400 hover:text-black transition-colors lang-btn" data-active="en">EN</button>
+                <button onclick="setLang('jp')" class="text-gray-400 hover:text-black transition-colors lang-btn" data-active="jp">JP</button>
+                <button class="bg-black text-white px-4 py-2 rounded-full hover:bg-gray-800 transition-colors" data-i18n="buy_now">购买</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 min-h-screen flex flex-col items-center justify-center relative">
+        <div class="text-center space-y-4 z-10 fade-up">
+            <h1 class="text-6xl md:text-8xl font-black tracking-tighter" data-i18n="hero_title">FUJI Phone 2</h1>
+            <p class="text-xl md:text-2xl text-gray-500 font-light" data-i18n="hero_subtitle">重塑移动影像的物理极限</p>
+            <p class="text-sm font-mono uppercase tracking-widest mt-4">2026.2.14 On Sale</p>
+        </div>
+
+        <div class="relative w-full max-w-4xl mt-12 mb-12 fade-up">
+            <div class="flex justify-center items-center">
+                <!-- Overlapping Front and Back -->
+                <img src="https://fuji-phone.btm-m.site/white-front.png" alt="Front" class="h-[60vh] object-contain relative z-10 drop-shadow-2xl">
+                <img src="https://fuji-phone.btm-m.site/white-back.png" alt="Back" class="h-[60vh] object-contain relative -ml-24 z-0 opacity-90 scale-95">
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center max-w-4xl mx-auto w-full px-6 fade-up">
+            <div>
+                <p class="text-xs text-gray-400 uppercase">Processor</p>
+                <p class="font-bold text-lg">Snapdragon 8 Elite Gen 5</p>
+            </div>
+            <div>
+                <p class="text-xs text-gray-400 uppercase">Camera</p>
+                <p class="font-bold text-lg">200MP LYT-901 1-inch</p>
+            </div>
+            <div>
+                <p class="text-xs text-gray-400 uppercase">Battery</p>
+                <p class="font-bold text-lg">6700 mAh</p>
+            </div>
+             <div>
+                <p class="text-xs text-gray-400 uppercase">Display</p>
+                <p class="font-bold text-lg">6.9" M13 Pro AMOLED</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-20 bg-gray-50 border-y border-gray-200">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-12 fade-up">
+                <h2 class="text-3xl font-bold mb-4" data-i18n="pricing_title">价格与版本</h2>
+                <div class="inline-block bg-black text-white px-4 py-1 text-sm mb-2" data-i18n="promo_1">核心促销：中国大陆存储升杯</div>
+                <p class="text-gray-500 text-sm" data-i18n="promo_2">全球焕新计划：最高可享额外补贴</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 text-sm font-mono fade-up" id="pricing-list">
+                <!-- Prices injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Bento Grid System -->
+    <section class="py-24 px-6 max-w-7xl mx-auto">
+        <h2 class="text-4xl font-bold mb-16 text-center tracking-tight fade-up" data-i18n="features_title">核心技术架构</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-fr">
+            
+            <!-- Camera Main -->
+            <div class="bento-card p-8 col-span-1 md:col-span-2 lg:col-span-2 row-span-2 flex flex-col justify-between fade-up">
+                <div>
+                    <h3 class="text-2xl font-bold mb-2" data-i18n="bento_cam_title">主摄系统</h3>
+                    <p class="text-gray-600 mb-4" data-i18n="bento_cam_desc">LYT-901 影像原力 | 1 英寸超大底 | 200MP</p>
+                </div>
+                <div class="mt-8">
+                    <p class="text-3xl font-serif italic" data-i18n="bento_cam_slogan">「重塑移动端的解析力极限。」</p>
+                </div>
+            </div>
+
+            <!-- CPU -->
+            <div class="bento-card p-8 col-span-1 md:col-span-2 row-span-1 flex flex-col justify-center relative overflow-hidden fade-up">
+                <div class="z-10">
+                    <h3 class="text-xl font-bold mb-1" data-i18n="bento_cpu_title">极致性能 CPU</h3>
+                    <p class="text-gray-500 text-sm" data-i18n="bento_cpu_desc">Snapdragon 8 Elite Gen 5 | 3nm</p>
+                    <p class="mt-4 font-serif italic" data-i18n="bento_cpu_slogan">「性能，无须保留。」</p>
+                </div>
+                <img src="https://fuji-phone.btm-m.site/8elite.png" class="absolute right-[-20px] bottom-[-20px] w-32 opacity-20 grayscale" alt="CPU">
+            </div>
+
+            <!-- Display -->
+            <div class="bento-card p-6 col-span-1 row-span-2 flex flex-col justify-between fade-up">
+                <div>
+                    <h3 class="text-lg font-bold mb-2" data-i18n="bento_screen_title">屏幕设计</h3>
+                    <ul class="text-xs text-gray-500 space-y-1">
+                        <li>1.18mm 视觉无界</li>
+                        <li>Samsung M13 Pro</li>
+                        <li>6.9 inch</li>
+                    </ul>
+                </div>
+                <p class="text-lg font-serif italic mt-4" data-i18n="bento_screen_slogan">「正面，只有屏幕。」</p>
+            </div>
+
+            <!-- Battery -->
+            <div class="bento-card p-6 col-span-1 row-span-2 flex flex-col justify-between fade-up">
+                <div>
+                    <h3 class="text-lg font-bold mb-2" data-i18n="bento_batt_title">电力系统</h3>
+                    <p class="text-4xl font-bold my-2">6700<span class="text-sm font-normal text-gray-500">mAh</span></p>
+                    <p class="text-xs text-gray-500">120W Wired / 65W Wireless</p>
+                </div>
+                <img src="https://fuji-phone.btm-m.site/battery.png" class="w-24 mx-auto my-4 grayscale opacity-80" alt="Battery">
+                <p class="text-sm font-serif italic" data-i18n="bento_batt_slogan">「为创作，提供持久底气。」</p>
+            </div>
+
+            <!-- Secondary Cameras -->
+            <div class="bento-card p-6 col-span-1 md:col-span-1 fade-up">
+                <h3 class="text-lg font-bold mb-2" data-i18n="bento_aux_title">全焦段副摄</h3>
+                <p class="text-xs text-gray-500" data-i18n="bento_aux_desc">双 50MP 旗舰影像 | LYT-600 潜望 | LYT-500 超广角</p>
+            </div>
+
+            <!-- LiDAR -->
+            <div class="bento-card p-6 col-span-1 md:col-span-1 fade-up">
+                <h3 class="text-lg font-bold mb-2" data-i18n="bento_lidar_title">空间感知</h3>
+                <p class="text-xs text-gray-500" data-i18n="bento_lidar_desc">LiDAR 激光雷达 | Sony SPAD F1</p>
+            </div>
+
+            <!-- Rear Display (New) -->
+            <div class="bento-card p-6 col-span-1 md:col-span-2 fade-up relative overflow-hidden">
+                <div class="relative z-10">
+                   <h3 class="text-lg font-bold mb-2" data-i18n="bento_rear_title">1.76 英寸灵动背屏</h3>
+                   <div class="space-y-1 mb-4">
+                       <p class="text-xs text-gray-500" data-i18n="bento_rear_desc_1">2 亿像素自拍监看 | 开启主摄自拍时代</p>
+                       <p class="text-xs text-gray-500" data-i18n="bento_rear_desc_2">创作状态看板 | 实时胶片模拟与录制提醒</p>
+                       <p class="text-xs text-gray-500" data-i18n="bento_rear_desc_3">DesignOS 交互 | 极简视窗，信息触目即得</p>
+                   </div>
+                   <p class="text-sm font-serif italic" data-i18n="bento_rear_slogan">「视界的第二视角。」</p>
+               </div>
+           </div>
+
+            <!-- Video -->
+            <div class="bento-card p-6 col-span-1 md:col-span-2 bg-black text-white fade-up">
+                <h3 class="text-lg font-bold mb-2" data-i18n="bento_video_title">专业制片</h3>
+                <p class="text-gray-400 text-sm mb-2" data-i18n="bento_video_desc">10-bit Log | 8K High Bitrate</p>
+                <p class="text-sm font-serif italic text-right" data-i18n="bento_video_slogan">「把后期空间，留给创作者。」</p>
+            </div>
+
+            <!-- GPU -->
+            <div class="bento-card p-6 col-span-1 fade-up">
+                <h3 class="text-lg font-bold mb-2" data-i18n="bento_gpu_title">GPU</h3>
+                <p class="text-xs text-gray-500" data-i18n="bento_gpu_desc">Design Graphic Master | Ray Tracing 3.0</p>
+            </div>
+
+            <!-- AI -->
+            <div class="bento-card p-6 col-span-1 fade-up">
+                <h3 class="text-lg font-bold mb-2" data-i18n="bento_ai_title">AI 引擎</h3>
+                <p class="text-xs text-gray-500" data-i18n="bento_ai_desc">Design AI Boost 2 Pro | 端侧大模型</p>
+            </div>
+
+             <!-- OS -->
+             <div class="bento-card p-6 col-span-1 md:col-span-2 fade-up">
+                <h3 class="text-lg font-bold mb-2" data-i18n="bento_os_title">操作系统</h3>
+                <div class="flex justify-between items-end">
+                    <p class="text-xs text-gray-500 max-w-[60%]" data-i18n="bento_os_desc">DesignOS 2.2 | Android 16 | 超流体动效</p>
+                    <p class="text-sm font-serif italic" data-i18n="bento_os_slogan">「直觉，触手可及。」</p>
+                </div>
+            </div>
+
+             <!-- App -->
+             <div class="bento-card p-6 col-span-1 md:col-span-2 fade-up border-black bg-gray-900 text-white">
+                <h3 class="text-lg font-bold mb-2" data-i18n="bento_app_title">FUJI HARIKEN</h3>
+                <p class="text-gray-400 text-xs mb-2" data-i18n="bento_app_desc">影视飓风联合开发 | 大师级预设</p>
+                <p class="text-sm font-serif italic" data-i18n="bento_app_slogan">「让无限可能，成为现实。」</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Deep Dive Content Sections -->
+    <div class="max-w-4xl mx-auto px-6 space-y-32 py-24">
+        
+        <!-- Optics -->
+        <section class="fade-up">
+            <h3 class="text-3xl font-bold mb-6" data-i18n="optics_title">富士龙极致光学架构</h3>
+            <h4 class="text-xl text-gray-500 mb-8" data-i18n="optics_subtitle">全路径光子秩序管理，重现光影本真。</h4>
+            <div class="prose prose-lg text-gray-800 text-balance space-y-6">
+                <p data-i18n="optics_p1">FUJI Phone 2 搭载由富士龙团队深度调优的原生光学模组。基于 APO（复消色差） 严苛标准，我们重构了光路传导系统。利用三枚特种 ED 玻璃镜片与独家 Super EBC 纳米级多层镀膜技术，精细化管控光线在每一层镜组间、直至抵达传感器滤光片前的每一次折射。</p>
+                <p data-i18n="optics_p2">通过对杂散光的层层抑制，我们从物理底层阻绝了光学鬼影与衍射炫光的产生。这种对光流近乎偏执的纯净处理，不仅赋予了画面前所未有的透彻度，更让 LYT-901 传感器的每一颗像素都能捕捉到最真实、深邃的色彩信息。</p>
+            </div>
+            <div class="w-full h-px bg-gray-200 mt-12"></div>
+        </section>
+
+        <!-- 200MP -->
+        <section class="fade-up">
+            <h3 class="text-3xl font-bold mb-6" data-i18n="pixel_title">2 亿像素：重塑物理世界的解析精度</h3>
+            <h4 class="text-xl text-gray-500 mb-8" data-i18n="pixel_subtitle">每一颗像素，皆为捕捉光影的传感器。</h4>
+            <div class="prose prose-lg text-gray-800 text-balance">
+                <p data-i18n="pixel_p1">LYT-901 主摄以 2 亿个光电感应单元，重新定义了移动影像的物理极限。这不是数字的堆砌，而是对微观纹理的深度还原。通过全新的像素聚合算法，即便进行多次无损裁剪，画面依然保留着足以冲印超大画幅海报的惊人细节与原生影调。</p>
+            </div>
+            <div class="w-full h-px bg-gray-200 mt-12"></div>
+        </section>
+
+        <!-- LOFIC -->
+        <section class="fade-up">
+            <h3 class="text-3xl font-bold mb-6" data-i18n="hdr_title">高动态范围：影调的艺术，而非算法的堆凑</h3>
+            <h4 class="text-xl text-gray-500 mb-8" data-i18n="hdr_subtitle">LOFIC 技术驱动下的超阔动态视界。</h4>
+            <div class="prose prose-lg text-gray-800 text-balance">
+                <p data-i18n="hdr_p1">借助 LOFIC（高动态范围） 技术，FUJI Phone 2 能够捕捉超越常规 10 倍的明暗信息。在高光与深影剧烈交织的瞬间，它能精准记录亮部的云层层次与暗部的岩石机理。这种高动态范围不仅是数据的保留，更是富士胶片对色彩宽容度的极致理解，让每一张照片都拥有电影级的视觉张力。</p>
+            </div>
+            <div class="w-full h-px bg-gray-200 mt-12"></div>
+        </section>
+
+        <!-- LiDAR -->
+        <section class="fade-up">
+            <h3 class="text-3xl font-bold mb-6" data-i18n="space_title">FUJI 激光空间感知：深度信息的重构</h3>
+            <h4 class="text-xl text-gray-500 mb-8" data-i18n="space_subtitle">Sony SPAD F1 + VCSEL X1 Pro 系统。</h4>
+            <div class="prose prose-lg text-gray-800 text-balance">
+                <p data-i18n="space_p1">由 SPAD 探测器 与 VCSEL 发射模组 构成的 LiDAR 系统，为手机赋予了亚毫米级的空间感知力。它能在极暗光环境下实现毫秒级瞬间对焦，并为 FUJI HARIKEN 提供精确的物理虚化深度数据。它不只是雷达，更是连接物理空间与数字影像的感知中枢。</p>
+            </div>
+            <div class="w-full h-px bg-gray-200 mt-12"></div>
+        </section>
+
+        <!-- Design -->
+        <section class="fade-up">
+            <h3 class="text-3xl font-bold mb-6" data-i18n="design_title">1.18mm 物理美学：视觉边界的终点</h3>
+            <h4 class="text-xl text-gray-500 mb-8" data-i18n="design_subtitle">全对称四等边，通往无界的入场券。</h4>
+            <div class="prose prose-lg text-gray-800 text-balance">
+                <p data-i18n="design_p1">FUJI Phone 2 挑战了智能手机工程的极限，实现了边框仅为 1.18mm 的全对称视觉奇迹。这不仅是数字上的压制，更是对正面视觉秩序的极致重构。纯平直屏的设计语言，将任何视觉干扰降至最低，让 6.9 英寸的视野仿佛悬浮于掌心，成就真正意义上的“一块完整的屏幕”。</p>
+            </div>
+            <div class="w-full h-px bg-gray-200 mt-12"></div>
+        </section>
+
+        <!-- Screen -->
+        <section class="fade-up">
+            <h3 class="text-3xl font-bold mb-6" data-i18n="screen_tech_title">Tandem OLED 双层架构：屏幕性能的巅峰</h3>
+            <h4 class="text-xl text-gray-500 mb-8" data-i18n="screen_tech_subtitle">双层发光，重塑亮度次元。</h4>
+            <div class="prose prose-lg text-gray-800 text-balance">
+                <p data-i18n="screen_tech_p1">定制版 Samsung M13 Pro 材质屏采用革命性 Tandem 双层 OLED 架构，通过发光层垂直堆叠工艺，在功耗大幅降低的同时将屏幕寿命提升至传统架构的两倍。其物理性能迎来跨越式进化：局部峰值亮度（1% APL）高达惊人的 7600 nits，配合 3500 nits 高 APL 峰值亮度及 2000 nits 全屏最高激发亮度，赋予了杜比视界（Dolby Vision）原生内容前所未有的高光爆发力与深邃暗部细节。依托 MORO LTPO+（1-144Hz）自适应刷新技术与 2608 x 1204 高分辨率，416 PPI 的像素精度确保每一帧画面都具备极致的动态范围与色彩还原。这不仅是一块屏幕，更是完全符合富士色彩标准的掌上专业级监视器。</p>
+            </div>
+            <div class="w-full h-px bg-gray-200 mt-12"></div>
+        </section>
+
+        <!-- Rear Display Detail (New) -->
+        <section class="fade-up">
+            <h3 class="text-3xl font-bold mb-6" data-i18n="rear_disp_title">1.76 英寸灵动背屏：视界的双重维度</h3>
+            <div class="prose prose-lg text-gray-800 text-balance">
+                <p data-i18n="rear_disp_p1">这块巧妙集成于相机模组一侧的 1.76 英寸灵动背屏，是 DesignOS 2.2 交互美学在机身背部的深度延伸。它不仅是 2 亿像素 LYT-901 主摄的专属自拍监视器，更是专业创作状态的实时看板。无需翻转机身，即可直观确认当前的富士胶片模拟模式、录制状态及核心系统信息。在极简的工业设计语言下，它将实用功能与视觉秩序完美融合，让机身背面成为连接创作者与光影的第二窗口。</p>
+            </div>
+            <div class="w-full h-px bg-gray-200 mt-12"></div>
+        </section>
+
+        <!-- Thickness -->
+        <section class="fade-up">
+            <h3 class="text-3xl font-bold mb-6" data-i18n="thin_title">8.42mm 纤薄工程美学</h3>
+            <h4 class="text-xl text-gray-500 mb-8" data-i18n="thin_subtitle">在高集成与轻量化之间，寻找黄金分割。</h4>
+            <div class="prose prose-lg text-gray-800 text-balance">
+                <p data-i18n="thin_p1">在容纳 1 英寸巨型底传感器与 6700mAh 巨量能源的极限挑战下，FUJI Phone 2 将机身厚度克制在 8.42mm。这并非简单的堆叠，而是通过 3D 叠层主板与高密度硅碳电芯实现的结构重塑。配合 1.18mm 的极窄边框，赋予了整机近乎手术刀般的精密握感。</p>
+            </div>
+            <div class="w-full h-px bg-gray-200 mt-12"></div>
+        </section>
+
+        <!-- CPU Detail -->
+        <section class="fade-up">
+            <h3 class="text-3xl font-bold mb-6" data-i18n="cpu_detail_title">第五代骁龙 8 至尊版</h3>
+            <h4 class="text-xl text-gray-500 mb-8" data-i18n="cpu_detail_subtitle">架构+制程跃迁，性能自此无上限。</h4>
+            <div class="prose prose-lg text-gray-800 text-balance">
+                <p data-i18n="cpu_detail_p1">首次搭载第二代自研 Oryon CPU，全大核设计彻底告别低效能时代。配合 台积电第三代 3nm 巅峰工艺，不论是处理 8K 视频工作流，还是在高负载 3D 游戏中穿梭，FUJI Phone 2 都能以磅礴算力冷静应对。每一次点击，都是对速度的重新定义。</p>
+            </div>
+            <div class="w-full h-px bg-gray-200 mt-12"></div>
+        </section>
+
+        <!-- AI Detail -->
+        <section class="fade-up">
+            <h3 class="text-3xl font-bold mb-6" data-i18n="ai_detail_title">Design AI Boost 2 Pro</h3>
+            <h4 class="text-xl text-gray-500 mb-8" data-i18n="ai_detail_subtitle">端侧智能中枢，让 AI 拥有直觉。</h4>
+            <div class="prose prose-lg text-gray-800 text-balance">
+                <p data-i18n="ai_detail_p1">全新 AI Boost 2 Pro 移动算力引擎，将端侧 AI 推向百亿参数规模。凭借 NPU 的爆发式性能，FUJI Phone 2 能够实时理解你的拍摄场景，并在毫秒间完成像素级的语义分割与色彩重建。从同声传译到影像增强，智能，已深植于每一行底层代码。</p>
+            </div>
+            <div class="w-full h-px bg-gray-200 mt-12"></div>
+        </section>
+
+         <!-- GPU Detail -->
+         <section class="fade-up">
+            <h3 class="text-3xl font-bold mb-6" data-i18n="gpu_detail_title">移动端图形大师：Design Graphic Master GPU</h3>
+            <h4 class="text-xl text-gray-500 mb-8" data-i18n="gpu_detail_subtitle">光线追踪 3.0，重塑移动端的光影秩序。</h4>
+            <div class="prose prose-lg text-gray-800 text-balance">
+                <p data-i18n="gpu_detail_p1">定制版 Design Graphic Master GPU，不仅为 144Hz 的丝滑动效提供支撑，更将硬件级实时光线追踪提升到了全新高度。在复杂的三维场景中，它能精准模拟光线的反射、折射与遮挡，让屏幕内的世界拥有真实的物理质感。</p>
+            </div>
+            <div class="w-full h-px bg-gray-200 mt-12"></div>
+        </section>
+
+         <!-- Audio Detail -->
+         <section class="fade-up">
+            <h3 class="text-3xl font-bold mb-6" data-i18n="audio_detail_title">Dolby Atmos 立体声双扬声器</h3>
+            <h4 class="text-xl text-gray-500 mb-8" data-i18n="audio_detail_subtitle">声场无界，让听觉身临其境。</h4>
+            <div class="prose prose-lg text-gray-800 text-balance">
+                <p data-i18n="audio_detail_p1">FUJI Phone 2 搭载全新一代高对称性立体声双扬声器，针对 Dolby Atmos（杜比全景声） 进行底层架构调优。无论是电影中呼啸而过的箭矢，还是音乐里细腻的人声呼吸，每一丝声响都能在三维空间中精准定位。配合 DesignOS 声音引擎，低音更显浑厚深邃，高音清澈通透，为你构建私人专属的掌上音乐厅。</p>
+            </div>
+            <div class="w-full h-px bg-gray-200 mt-12"></div>
+        </section>
+
+        <!-- X-Optics -->
+        <section class="bg-black text-white p-12 rounded-lg fade-up">
+            <div class="flex flex-col md:flex-row gap-8 items-start">
+                <div class="flex-1">
+                    <h3 class="text-2xl font-bold mb-4" data-i18n="acc_title">FUJI X-Optics 专业影像套装</h3>
+                    <h4 class="text-lg text-gray-400 mb-6 italic" data-i18n="acc_subtitle">从掌上旗舰，到创作中枢。触碰光影的实体。</h4>
+                    <p class="text-sm text-gray-300 mb-4 leading-relaxed" data-i18n="acc_p1">基于 APO（复消色差） 光学设计，每一枚镜头均采用三枚高折射率特种玻璃镜片。Super EBC 纳米级镀膜 确保了 99.9% 的透光率，在物理层面彻底过滤色散与鬼影。</p>
+                    <p class="text-sm text-gray-300 mb-4 leading-relaxed" data-i18n="acc_p2">采用高强度航空级铝合金与类肤质感涂层。高精细度的螺纹卡口设计，确保镜头安装瞬时对位，严丝合缝。</p>
+                    <p class="text-sm text-gray-300 mb-4 leading-relaxed" data-i18n="acc_p3">当镜头旋入的一刻，DesignOS 2.2 实时感知。系统将自动调出专属 UI 界面。</p>
+                    <p class="text-xs text-gray-500 mt-6" data-i18n="acc_list">套装包含：FUJI 专用影像扩展壳 + 富士龙定制光学镜头（任选其一） + 镜头防护包 + 影视飓风联名擦镜布。</p>
+                </div>
+                <div class="w-full md:w-1/3 flex items-center justify-center">
+                    <div class="w-32 h-32 rounded-full border-4 border-gray-700 flex items-center justify-center">
+                        <span class="text-gray-500 text-xs">X-Optics Mount</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Specifications Table -->
+    <section class="py-20 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-4xl mx-auto px-6">
+            <h3 class="text-2xl font-bold mb-8 text-center" data-i18n="tech_specs_title">Technical Specifications</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-12 text-sm border-t border-gray-200 pt-8" id="specs-table">
+                <!-- Specs injected via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footnotes -->
+    <section class="py-12 bg-white text-gray-400 text-[10px] leading-relaxed border-t border-gray-100">
+        <div class="max-w-6xl mx-auto px-6">
+            <h5 class="font-bold mb-2 uppercase" data-i18n="notes_title">备注与说明</h5>
+            <ol class="list-decimal pl-4 space-y-1" id="footnotes-list">
+                <!-- Footnotes injected via JS -->
+            </ol>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-16">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col items-center gap-12">
+            <div class="flex flex-wrap justify-center gap-8 md:gap-16 grayscale opacity-80 hover:opacity-100 transition-opacity">
+                <img src="https://fuji-phone.btm-m.site/FUJI_Phone.svg" class="h-6 w-auto invert" alt="Logo 1">
+                <img src="https://fuji-phone.btm-m.site/Fujifilm_logo.svg" class="h-6 w-auto invert" alt="Logo 2">
+                <img src="https://fuji-phone.btm-m.site/MORO_logo.svg" class="h-6 w-auto invert" alt="Logo 3">
+                <img src="https://fuji-phone.btm-m.site/DesignPhone_logo.svg" class="h-6 w-auto invert" alt="Logo 4">
+            </div>
+            
+            <div class="text-center text-xs text-gray-500 space-y-2">
+                <p>FUJIFILM IN-ENGINEERING with MORO</p>
+                <p>Powered by DesignPhone</p>
+                <p>© 2026 FUJIFILM / MORO All rights reserved.</p>
+                <p>Art Design by Cold STUDIO © 2026 MORO / Cold STUDIO All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Translations Database
+        const translations = {
+            zh: {
+                hero_title: "FUJI Phone 2",
+                hero_subtitle: "重塑移动影像的物理极限",
+                buy_now: "购买",
+                pricing_title: "价格与版本",
+                promo_1: "核心促销：中国大陆存储升杯 (6,499元即得12GB + 512GB)",
+                promo_2: "全球焕新计划：最高可享 1,000 CNY 额外补贴",
+                features_title: "核心技术架构",
+                
+                // Bento Titles & Desc
+                bento_cam_title: "主摄系统",
+                bento_cam_desc: "LYT-901 影像原力 | 1 英寸超大底 | 200MP | 16-in-1 像素融合",
+                bento_cam_slogan: "「重塑移动端的解析力极限。」",
+                bento_cpu_title: "极致性能 CPU",
+                bento_cpu_desc: "第五代骁龙 8 至尊版 | Snapdragon 8 Elite Gen 5 | 3nm",
+                bento_cpu_slogan: "「性能，无须保留。」",
+                bento_screen_title: "屏幕设计",
+                bento_screen_slogan: "「正面，只有屏幕。」",
+                bento_batt_title: "电力系统",
+                bento_batt_slogan: "「为创作，提供持久底气。」",
+                bento_aux_title: "全焦段副摄",
+                bento_aux_desc: "双 50MP 旗舰影像 | LYT-600 潜望 | LYT-500 超广角",
+                bento_lidar_title: "空间感知",
+                bento_lidar_desc: "LiDAR 激光雷达系统 | Sony SPAD F1 + VCSEL X1 Pro",
+                
+                // Rear Display Bento
+                bento_rear_title: "1.76 英寸灵动背屏",
+                bento_rear_desc_1: "2 亿像素自拍监看 | 开启主摄自拍时代",
+                bento_rear_desc_2: "创作状态看板 | 实时胶片模拟与录制提醒",
+                bento_rear_desc_3: "DesignOS 交互 | 极简视窗，信息触目即得",
+                bento_rear_slogan: "「视界的第二视角。」",
+
+                bento_video_title: "专业制片",
+                bento_video_desc: "数字电影级工作流 | 10-bit Log | 8K High Bitrate",
+                bento_video_slogan: "「把后期空间，留给创作者。」",
+                bento_gpu_title: "GPU",
+                bento_gpu_desc: "Design Graphic Master Mobile | 光线追踪 3.0",
+                bento_ai_title: "AI 引擎",
+                bento_ai_desc: "Design AI Boost 2 Pro | 端侧大模型",
+                bento_os_title: "操作系统",
+                bento_os_desc: "DesignOS 2.2 (Android 16) | 超流体动效 3.0",
+                bento_os_slogan: "「直觉，触手可及。」",
+                bento_app_title: "FUJI HARIKEN",
+                bento_app_desc: "影视飓风联合开发 | 全参数手动控制",
+                bento_app_slogan: "「让无限可能，成为现实。」",
+
+                // Deep Dives
+                optics_title: "富士龙极致光学架构",
+                optics_subtitle: "全路径光子秩序管理，重现光影本真。",
+                optics_p1: "FUJI Phone 2 搭载由富士龙团队深度调优的原生光学模组。基于 APO（复消色差） 严苛标准，我们重构了光路传导系统。利用三枚特种 ED 玻璃镜片与独家 Super EBC 纳米级多层镀膜技术，精细化管控光线在每一层镜组间、直至抵达传感器滤光片前的每一次折射。",
+                optics_p2: "通过对杂散光的层层抑制，我们从物理底层阻绝了光学鬼影与衍射炫光的产生。这种对光流近乎偏执的纯净处理，不仅赋予了画面前所未有的透彻度，更让 LYT-901 传感器的每一颗像素都能捕捉到最真实、深邃的色彩信息。",
+                
+                pixel_title: "2 亿像素：重塑物理世界的解析精度",
+                pixel_subtitle: "每一颗像素，皆为捕捉光影的传感器。",
+                pixel_p1: "LYT-901 主摄以 2 亿个光电感应单元，重新定义了移动影像的物理极限。这不是数字的堆砌，而是对微观纹理的深度还原。通过全新的像素聚合算法，即便进行多次无损裁剪，画面依然保留着足以冲印超大画幅海报的惊人细节与原生影调。",
+
+                hdr_title: "高动态范围：影调的艺术，而非算法的堆凑",
+                hdr_subtitle: "LOFIC 技术驱动下的超阔动态视界。",
+                hdr_p1: "借助 LOFIC（高动态范围） 技术，FUJI Phone 2 能够捕捉超越常规 10 倍的明暗信息。在高光与深影剧烈交织的瞬间，它能精准记录亮部的云层层次与暗部的岩石机理。这种高动态范围不仅是数据的保留，更是富士胶片对色彩宽容度的极致理解，让每一张照片都拥有电影级的视觉张力。",
+
+                space_title: "FUJI 激光空间感知：深度信息的重构",
+                space_subtitle: "Sony SPAD F1 + VCSEL X1 Pro 系统。",
+                space_p1: "由 SPAD 探测器 与 VCSEL 发射模组 构成的 LiDAR 系统，为手机赋予了亚毫米级的空间感知力。它能在极暗光环境下实现毫秒级瞬间对焦，并为 FUJI HARIKEN 提供精确的物理虚化深度数据。它不只是雷达，更是连接物理空间与数字影像的感知中枢。",
+
+                design_title: "1.18mm 物理美学：视觉边界的终点",
+                design_subtitle: "全对称四等边，通往无界的入场券。",
+                design_p1: "FUJI Phone 2 挑战了智能手机工程的极限，实现了边框仅为 1.18mm 的全对称视觉奇迹。这不仅是数字上的压制，更是对正面视觉秩序的极致重构。纯平直屏的设计语言，将任何视觉干扰降至最低，让 6.9 英寸的视野仿佛悬浮于掌心，成就真正意义上的“一块完整的屏幕”。",
+
+                // Rear Display Detail
+                rear_disp_title: "1.76 英寸灵动背屏：视界的双重维度",
+                rear_disp_p1: "这块巧妙集成于相机模组一侧的 1.76 英寸灵动背屏，是 DesignOS 2.2 交互美学在机身背部的深度延伸。它不仅是 2 亿像素 LYT-901 主摄的专属自拍监视器，更是专业创作状态的实时看板。无需翻转机身，即可直观确认当前的富士胶片模拟模式、录制状态及核心系统信息。在极简的工业设计语言下，它将实用功能与视觉秩序完美融合，让机身背面成为连接创作者与光影的第二窗口。",
+
+                screen_tech_title: "Tandem OLED 双层架构：屏幕性能的巅峰",
+                screen_tech_subtitle: "双层发光，重塑亮度次元。",
+                screen_tech_p1: "定制版 Samsung M13 Pro 材质屏采用革命性 Tandem 双层 OLED 架构，通过发光层垂直堆叠工艺，在功耗大幅降低的同时将屏幕寿命提升至传统架构的两倍。其物理性能迎来跨越式进化：局部峰值亮度（1% APL）高达惊人的 7600 nits，配合 3500 nits 高 APL 峰值亮度及 2000 nits 全屏最高激发亮度，赋予了杜比视界（Dolby Vision）原生内容前所未有的高光爆发力与深邃暗部细节。依托 MORO LTPO+（1-144Hz）自适应刷新技术与 2608 x 1204 高分辨率，416 PPI 的像素精度确保每一帧画面都具备极致的动态范围与色彩还原。这不仅是一块屏幕，更是完全符合富士色彩标准的掌上专业级监视器。",
+
+                thin_title: "8.42mm 纤薄工程美学",
+                thin_subtitle: "在高集成与轻量化之间，寻找黄金分割。",
+                thin_p1: "在容纳 1 英寸巨型底传感器与 6700mAh 巨量能源的极限挑战下，FUJI Phone 2 将机身厚度克制在 8.42mm。这并非简单的堆叠，而是通过 3D 叠层主板与高密度硅碳电芯实现的结构重塑。配合 1.18mm 的极窄边框，赋予了整机近乎手术刀般的精密握感。",
+
+                cpu_detail_title: "第五代骁龙 8 至尊版",
+                cpu_detail_subtitle: "架构+制程跃迁，性能自此无上限。",
+                cpu_detail_p1: "首次搭载第二代自研 Oryon CPU，全大核设计彻底告别低效能时代。配合 台积电第三代 3nm 巅峰工艺，不论是处理 8K 视频工作流，还是在高负载 3D 游戏中穿梭，FUJI Phone 2 都能以磅礴算力冷静应对。每一次点击，都是对速度的重新定义。",
+
+                ai_detail_title: "Design AI Boost 2 Pro",
+                ai_detail_subtitle: "端侧智能中枢，让 AI 拥有直觉。",
+                ai_detail_p1: "全新 AI Boost 2 Pro 移动算力引擎，将端侧 AI 推向百亿参数规模。凭借 NPU 的爆发式性能，FUJI Phone 2 能够实时理解你的拍摄场景，并在毫秒间完成像素级的语义分割与色彩重建。从同声传译到影像增强，智能，已深植于每一行底层代码。",
+
+                gpu_detail_title: "移动端图形大师：Design Graphic Master GPU",
+                gpu_detail_subtitle: "光线追踪 3.0，重塑移动端的光影秩序。",
+                gpu_detail_p1: "定制版 Design Graphic Master GPU，不仅为 144Hz 的丝滑动效提供支撑，更将硬件级实时光线追踪提升到了全新高度。在复杂的三维场景中，它能精准模拟光线的反射、折射与遮挡，让屏幕内的世界拥有真实的物理质感。",
+
+                audio_detail_title: "Dolby Atmos 立体声双扬声器",
+                audio_detail_subtitle: "声场无界，让听觉身临其境。",
+                audio_detail_p1: "FUJI Phone 2 搭载全新一代高对称性立体声双扬声器，针对 Dolby Atmos（杜比全景声） 进行底层架构调优。无论是电影中呼啸而过的箭矢，还是音乐里细腻的人声呼吸，每一丝声响都能在三维空间中精准定位。配合 DesignOS 声音引擎，低音更显浑厚深邃，高音清澈通透，为你构建私人专属的掌上音乐厅。",
+
+                acc_title: "FUJI X-Optics 专业影像套装",
+                acc_subtitle: "从掌上旗舰，到创作中枢。触碰光影的实体。",
+                acc_p1: "基于 APO（复消色差） 光学设计，每一枚镜头均采用三枚高折射率特种玻璃镜片。Super EBC 纳米级镀膜 确保了 99.9% 的透光率，在物理层面彻底过滤色散与鬼影。",
+                acc_p2: "采用高强度航空级铝合金与类肤质感涂层。高精细度的螺纹卡口设计，确保镜头安装瞬时对位，严丝合缝。",
+                acc_p3: "当镜头旋入的一刻，DesignOS 2.2 实时感知。系统将自动调出专属 UI 界面。",
+                acc_list: "套装包含：FUJI 专用影像扩展壳 + 富士龙定制光学镜头（任选其一） + 镜头防护包 + 影视飓风联名擦镜布。",
+
+                tech_specs_title: "详细技术参数",
+                notes_title: "备注与说明",
+            },
+            en: {
+                hero_title: "FUJI Phone 2",
+                hero_subtitle: "Redefining the Physical Limits of Mobile Imaging",
+                buy_now: "Order",
+                pricing_title: "Pricing & Editions",
+                promo_1: "Core Promo: Free Storage Upgrade in Mainland China (12+512GB for 6,499 CNY)",
+                promo_2: "Global Renewal Plan: Up to 150 USD extra subsidy",
+                features_title: "Core Architecture",
+
+                bento_cam_title: "Main Camera System",
+                bento_cam_desc: "LYT-901 Imaging Force | 1-inch Large Sensor | 200MP | 16-in-1 Fusion",
+                bento_cam_slogan: "“Reshaping the resolution limit of mobile.”",
+                bento_cpu_title: "Ultimate Performance CPU",
+                bento_cpu_desc: "Snapdragon 8 Elite Gen 5 | 3nm Architecture",
+                bento_cpu_slogan: "“Performance, reserved for nothing.”",
+                bento_screen_title: "Display Design",
+                bento_screen_slogan: "“Front, nothing but screen.”",
+                bento_batt_title: "Power System",
+                bento_batt_slogan: "“Endurance for creation.”",
+                bento_aux_title: "All-Focal Cameras",
+                bento_aux_desc: "Dual 50MP Flagship | LYT-600 Periscope | LYT-500 Ultra-Wide",
+                bento_lidar_title: "Spatial Sensing",
+                bento_lidar_desc: "LiDAR System | Sony SPAD F1 + VCSEL X1 Pro",
+                
+                // Rear Display Bento EN
+                bento_rear_title: "1.76\" Dynamic Rear Display",
+                bento_rear_desc_1: "200MP Selfie Monitor | Era of Main Cam Selfies",
+                bento_rear_desc_2: "Creative Dashboard | Film Sim & Rec Status",
+                bento_rear_desc_3: "DesignOS Interaction | Minimalist Window",
+                bento_rear_slogan: "“The second perspective of vision.”",
+
+                bento_video_title: "Pro Video",
+                bento_video_desc: "Digital Cinema Workflow | 10-bit Log | 8K High Bitrate",
+                bento_video_slogan: "“Leave post-production space to creators.”",
+                bento_gpu_title: "GPU",
+                bento_gpu_desc: "Design Graphic Master Mobile | Ray Tracing 3.0",
+                bento_ai_title: "AI Engine",
+                bento_ai_desc: "Design AI Boost 2 Pro | On-device LLM",
+                bento_os_title: "Operating System",
+                bento_os_desc: "DesignOS 2.2 (Android 16) | Hyper-Fluid Motion 3.0",
+                bento_os_slogan: "“Intuition, within reach.”",
+                bento_app_title: "FUJI HARIKEN",
+                bento_app_desc: "Co-developed with MediaStorm | Manual Control",
+                bento_app_slogan: "“Make infinite possibilities reality.”",
+
+                optics_title: "Fujinon Extreme Optical Architecture",
+                optics_subtitle: "Full-path photon order management, reproducing light and shadow authenticity.",
+                optics_p1: "FUJI Phone 2 features a native optical module deeply tuned by the Fujinon team. Based on strict APO (Apochromatic) standards, we reconstructed the light path transmission system. Utilizing three special ED glass lenses and exclusive Super EBC nano-grade multi-layer coating, we precisely control light refraction at every lens group layer until it reaches the sensor filter.",
+                optics_p2: "By layering suppression of stray light, we physically block optical ghosting and diffraction glare. This almost paranoid pure processing of light flow not only gives the image unprecedented clarity but allows every pixel of the LYT-901 sensor to capture the most authentic, deep color information.",
+
+                pixel_title: "200MP: Reshaping Physical Resolution",
+                pixel_subtitle: "Every pixel is a sensor for capturing light.",
+                pixel_p1: "The LYT-901 main camera redefines the physical limits of mobile imaging with 200 million photoelectric sensing units. This is not a piling up of numbers, but a deep restoration of microscopic textures. Through new pixel aggregation algorithms, even after multiple lossless crops, the image retains amazing details and native tones sufficient for printing extra-large posters.",
+
+                hdr_title: "High Dynamic Range: The Art of Tone",
+                hdr_subtitle: "Ultra-wide dynamic horizon driven by LOFIC technology.",
+                hdr_p1: "Powered by LOFIC (High Dynamic Range) technology, FUJI Phone 2 can capture light and dark information 10 times beyond conventional limits. In moments of intense interplay between highlights and deep shadows, it accurately records cloud layers in bright areas and rock textures in dark areas. This HDR is not just data retention, but Fujifilm's ultimate understanding of color latitude, giving every photo cinematic visual tension.",
+
+                space_title: "FUJI Laser Spatial Sensing",
+                space_subtitle: "Sony SPAD F1 + VCSEL X1 Pro System.",
+                space_p1: "The LiDAR system, composed of SPAD detectors and VCSEL emission modules, gives the phone sub-millimeter spatial perception. It achieves millisecond instant focus in extremely low light environments and provides precise physical bokeh depth data for FUJI HARIKEN. It is not just radar, but a sensing hub connecting physical space and digital imagery.",
+
+                design_title: "1.18mm Physical Aesthetics",
+                design_subtitle: "All-symmetric quadrilateral, ticket to the boundless.",
+                design_p1: "FUJI Phone 2 challenges the limits of smartphone engineering, achieving an all-symmetric visual miracle with a bezel of only 1.18mm. This is not just numerical suppression, but an ultimate reconstruction of frontal visual order. The pure flat screen design minimizes visual interference, making the 6.9-inch view appear suspended in the palm, achieving a truly 'complete screen'.",
+
+                // Rear Display Detail EN
+                rear_disp_title: "1.76\" Dynamic Rear Display: Dual Dimensions",
+                rear_disp_p1: "Ingeniously integrated into the side of the camera module, this 1.76-inch dynamic rear display is a deep extension of DesignOS 2.2 interaction aesthetics. It is not only a dedicated selfie monitor for the 200MP LYT-901 main camera but also a real-time dashboard for professional creation. Confirm Fujifilm simulation modes, recording status, and core system info without flipping the phone. Under minimalist industrial design, it blends utility with visual order, making the back a second window connecting the creator to light and shadow.",
+
+                screen_tech_title: "Tandem OLED Dual-Layer Architecture",
+                screen_tech_subtitle: "Dual-layer emission, reshaping the dimension of brightness.",
+                screen_tech_p1: "The custom Samsung M13 Pro screen adopts the revolutionary Tandem dual-layer OLED architecture. Through vertical stacking of emitting layers, it doubles screen life while significantly reducing power consumption. Its physical performance sees a leap: local peak brightness (1% APL) hits an astounding 7600 nits, combined with 3500 nits high APL peak brightness and 2000 nits full-screen max brightness, giving Dolby Vision native content unprecedented highlight explosiveness and deep shadow details.",
+
+                thin_title: "8.42mm Slim Engineering Aesthetic",
+                thin_subtitle: "Finding the golden section between high integration and lightweight.",
+                thin_p1: "Under the extreme challenge of accommodating a 1-inch giant sensor and 6700mAh massive energy, FUJI Phone 2 restrains the body thickness to 8.42mm. This is not simple stacking, but structural reconstruction achieved through 3D stacked motherboards and high-density silicon-carbon cells. Combined with the 1.18mm ultra-narrow bezel, it gives the whole machine a surgical precision grip.",
+
+                cpu_detail_title: "Snapdragon 8 Elite Gen 5",
+                cpu_detail_subtitle: "Architecture + Process Leap, performance has no ceiling.",
+                cpu_detail_p1: "First to feature the second-generation self-developed Oryon CPU, the all-big-core design bids farewell to the low-efficiency era. Paired with TSMC's third-generation 3nm peak process, whether processing 8K video workflows or navigating high-load 3D games, FUJI Phone 2 handles it calmly with majestic computing power.",
+
+                ai_detail_title: "Design AI Boost 2 Pro",
+                ai_detail_subtitle: "On-device intelligence hub, giving AI intuition.",
+                ai_detail_p1: "The all-new AI Boost 2 Pro mobile computing engine pushes on-device AI to the tens of billions parameter scale. Relying on the explosive performance of the NPU, FUJI Phone 2 can understand your shooting scene in real-time and complete pixel-level semantic segmentation and color reconstruction in milliseconds.",
+
+                gpu_detail_title: "Mobile Graphics Master: GPU",
+                gpu_detail_subtitle: "Ray Tracing 3.0, reshaping mobile light and shadow order.",
+                gpu_detail_p1: "The custom Design Graphic Master GPU not only supports 144Hz silky animation but also elevates hardware-level real-time ray tracing to new heights. In complex 3D scenes, it accurately simulates light reflection, refraction, and occlusion, giving the world inside the screen a real physical texture.",
+
+                audio_detail_title: "Dolby Atmos Stereo Dual Speakers",
+                audio_detail_subtitle: "Boundless soundstage, immersive hearing.",
+                audio_detail_p1: "FUJI Phone 2 features a new generation of high-symmetry stereo dual speakers, with underlying architecture tuned for Dolby Atmos. Whether it's arrows whizzing past in a movie or subtle vocal breaths in music, every sound is precisely positioned in 3D space.",
+
+                acc_title: "FUJI X-Optics Pro Imaging Kit",
+                acc_subtitle: "From handheld flagship to creative hub. Touching the entity of light and shadow.",
+                acc_p1: "Based on APO optical design, every lens uses three high-refractive-index special glass elements. Super EBC nano-coating ensures 99.9% light transmission, physically filtering dispersion and ghosting.",
+                acc_p2: "Uses high-strength aerospace-grade aluminum alloy with skin-like coating. High-precision thread mount ensures instant lens alignment.",
+                acc_p3: "The moment the lens is screwed in, DesignOS 2.2 senses it in real-time, automatically calling up the exclusive UI interface.",
+                acc_list: "Kit includes: FUJI Special Imaging Case + Fujinon Custom Lens (Choose one) + Lens Protection Bag + MediaStorm Co-branded Cleaning Cloth.",
+
+                tech_specs_title: "Technical Specifications",
+                notes_title: "Notes & Disclaimers",
+            },
+            jp: {
+                hero_title: "FUJI Phone 2",
+                hero_subtitle: "モバイルイメージングの物理的限界を再定義する",
+                buy_now: "購入",
+                pricing_title: "価格とバージョン",
+                promo_1: "コアプロモーション：中国本土でのストレージアップグレード (6,499元で12GB + 512GB)",
+                promo_2: "グローバルリニューアルプラン：最大22,000円の追加補助金",
+                features_title: "コアアーキテクチャ",
+
+                bento_cam_title: "メインカメラシステム",
+                bento_cam_desc: "LYT-901 イメージングフォース | 1インチ超大型センサー | 200MP | 16-in-1 ピクセル融合",
+                bento_cam_slogan: "「モバイルの解像力の限界を再構築する。」",
+                bento_cpu_title: "究極のパフォーマンス CPU",
+                bento_cpu_desc: "Snapdragon 8 Elite Gen 5 | 3nm プロセス",
+                bento_cpu_slogan: "「性能に、妥協なし。」",
+                bento_screen_title: "スクリーンデザイン",
+                bento_screen_slogan: "「正面、すべてがスクリーン。」",
+                bento_batt_title: "電力システム",
+                bento_batt_slogan: "「創作に、永続的な自信を。」",
+                bento_aux_title: "全焦点サブカメラ",
+                bento_aux_desc: "デュアル50MPフラッグシップ | LYT-600 ペリスコープ | LYT-500 超広角",
+                bento_lidar_title: "空間認識",
+                bento_lidar_desc: "LiDAR レーザーレーダー | Sony SPAD F1 + VCSEL X1 Pro",
+                
+                // Rear Display Bento JP
+                bento_rear_title: "1.76インチ・リアディスプレイ",
+                bento_rear_desc_1: "2億画素セルフィーモニター | メインカメラ自撮りの時代へ",
+                bento_rear_desc_2: "制作ステータス看板 | フィルムシミュレーション確認",
+                bento_rear_desc_3: "DesignOS インタラクション | 極小の視覚的窓",
+                bento_rear_slogan: "「視界の、第二の視点。」",
+
+                bento_video_title: "プロ映像制作",
+                bento_video_desc: "デジタルシネマ級ワークフロー | 10-bit Log | 8K High Bitrate",
+                bento_video_slogan: "「ポストプロダクションの空間を、クリエイターに。」",
+                bento_gpu_title: "GPU",
+                bento_gpu_desc: "Design Graphic Master Mobile | レイトレーシング 3.0",
+                bento_ai_title: "AI エンジン",
+                bento_ai_desc: "Design AI Boost 2 Pro | エッジ大規模モデル",
+                bento_os_title: "オペレーティングシステム",
+                bento_os_desc: "DesignOS 2.2 (Android 16) | 超流体モーション 3.0",
+                bento_os_slogan: "「直感を、その手に。」",
+                bento_app_title: "FUJI HARIKEN",
+                bento_app_desc: "MediaStorm 共同開発 | 全パラメータ手動制御",
+                bento_app_slogan: "「無限の可能性を、現実に。」",
+
+                optics_title: "フジノン究極光学アーキテクチャ",
+                optics_subtitle: "全経路光子秩序管理、光と影の真実を再現。",
+                optics_p1: "FUJI Phone 2は、フジノンチームによって深く調整されたネイティブ光学モジュールを搭載しています。厳格なAPO（アポクロマート）基準に基づき、光路伝送システムを再構築しました。3枚の特殊EDガラスレンズと独自のSuper EBCナノグレード多層コーティングを利用し、センサーフィルターに到達するまでの各レンズ群層での光の屈折を精密に管理します。",
+                optics_p2: "迷光を層ごとに抑制することで、物理的底層から光学ゴーストや回折フレアの発生を遮断します。この光流に対する偏執的とも言える純粋な処理は、画面にかつてない透明感を与えるだけでなく、LYT-901センサーのすべてのピクセルが最もリアルで深みのある色彩情報を捉えることを可能にします。",
+
+                pixel_title: "2億画素：物理世界の解像精度を再構築",
+                pixel_subtitle: "すべてのピクセルが、光と影を捉えるセンサー。",
+                pixel_p1: "LYT-901メインカメラは、2億個の光電感応ユニットでモバイルイメージングの物理的限界を再定義しました。これは数字の積み重ねではなく、微細なテクスチャの深度還元です。新しいピクセル凝集アルゴリズムにより、何度もロスレスクロップを行っても、画面は超大判ポスターを印刷するのに十分な驚異的なディテールとネイティブなトーンを保持します。",
+
+                hdr_title: "高ダイナミックレンジ：トーンの芸術",
+                hdr_subtitle: "LOFIC技術によって駆動される超広角ダイナミック視界。",
+                hdr_p1: "LOFIC（高ダイナミックレンジ）技術を活用することで、FUJI Phone 2は従来の限界を10倍超える明暗情報を捉えることができます。ハイライトと深い影が激しく交錯する瞬間、明るい部分の雲の層と暗い部分の岩のテクスチャを正確に記録します。このHDRは単なるデータの保持ではなく、富士フイルムの色彩ラティテュードに対する究極の理解であり、すべての写真に映画のような視覚的張力を与えます。",
+
+                space_title: "FUJI レーザー空間認識",
+                space_subtitle: "Sony SPAD F1 + VCSEL X1 Pro システム。",
+                space_p1: "SPAD検出器とVCSEL発射モジュールで構成されるLiDARシステムは、携帯電話に亜ミリメートル級の空間認識力を与えます。極暗光環境下でミリ秒級の瞬間フォーカスを実現し、FUJI HARIKENに正確な物理的ボケ深度データを提供します。それは単なるレーダーではなく、物理空間とデジタル画像を繋ぐ感知の中枢です。",
+
+                design_title: "1.18mm 物理美学：視覚境界の終点",
+                design_subtitle: "全対称四等辺、無限への入場券。",
+                design_p1: "FUJI Phone 2はスマートフォンの工学限界に挑戦し、わずか1.18mmのベゼルという全対称の視覚的奇跡を実現しました。これは単なる数値上の制圧ではなく、正面の視覚秩序に対する究極の再構築です。純平直スクリーンのデザイン言語は、あらゆる視覚的干渉を最小限に抑え、6.9インチの視野が手のひらに浮かんでいるかのように見せ、真の意味での「一枚の完全なスクリーン」を実現しました。",
+
+                // Rear Display Detail JP
+                rear_disp_title: "1.76インチ・リアディスプレイ：視界の二重次元",
+                rear_disp_p1: "カメラモジュール側に巧みに統合されたこの1.76インチのダイナミックリアディスプレイは、DesignOS 2.2のインタラクション美学を背面にまで拡張したものです。2億画素LYT-901メインカメラ専用のセルフィーモニターであるだけでなく、プロフェッショナルな制作ステータスのリアルタイムダッシュボードでもあります。本体を裏返すことなく、現在の富士フイルムシミュレーションモード、録画状態、およびコアシステム情報を直感的に確認できます。ミニマルな工業デザイン言語の下、実用的な機能と視覚的な秩序を完璧に融合させ、背面をクリエイターと光と影をつなぐ第二の窓にします。",
+
+                screen_tech_title: "Tandem OLED 二層アーキテクチャ",
+                screen_tech_subtitle: "二層発光、輝度の次元を再構築。",
+                screen_tech_p1: "カスタム版Samsung M13 Pro素材スクリーンは、革命的なTandem二層OLEDアーキテクチャを採用しています。発光層の垂直積層プロセスにより、消費電力を大幅に削減しながら、スクリーン寿命を従来アーキテクチャの2倍に向上させました。その物理性能は飛躍的な進化を遂げています：局所ピーク輝度（1% APL）は驚異的な7600 nitsに達し、3500 nitsの高APLピーク輝度および2000 nitsの全画面最大励起輝度と組み合わされ、Dolby Visionネイティブコンテンツにかつてないハイライトの爆発力と深みのある暗部ディテールを与えます。",
+
+                thin_title: "8.42mm 薄型工学美学",
+                thin_subtitle: "高集積と軽量化の間で、黄金比を見つける。",
+                thin_p1: "1インチの巨大センサーと6700mAhの巨大エネルギーを収容するという極限の挑戦の下、FUJI Phone 2は機体の厚さを8.42mmに抑えました。これは単純な積み重ねではなく、3D積層マザーボードと高密度シリコンカーボンセルによって実現された構造の再構築です。1.18mmの極細ベゼルと相まって、マシン全体に手術刀のような精密なグリップ感を与えます。",
+
+                cpu_detail_title: "Snapdragon 8 Elite Gen 5",
+                cpu_detail_subtitle: "アーキテクチャ+プロセスの飛躍、性能に上限なし。",
+                cpu_detail_p1: "第2世代の自社開発Oryon CPUを初めて搭載し、全ビッグコア設計で低効率時代に別れを告げました。TSMCの第3世代3nmピークプロセスと組み合わせることで、8Kビデオワークフローの処理であれ、高負荷3Dゲームのナビゲーションであれ、FUJI Phone 2は圧倒的な計算能力で冷静に対応します。",
+
+                ai_detail_title: "Design AI Boost 2 Pro",
+                ai_detail_subtitle: "エッジインテリジェンスハブ、AIに直感を与える。",
+                ai_detail_p1: "全く新しいAI Boost 2 Proモバイル計算エンジンは、エッジAIを数百億パラメータ規模に押し上げます。NPUの爆発的な性能に頼ることで、FUJI Phone 2は撮影シーンをリアルタイムで理解し、ピクセルレベルのセマンティックセグメンテーションと色彩再構築をミリ秒単位で完了します。",
+
+                gpu_detail_title: "モバイルグラフィックスマスター：GPU",
+                gpu_detail_subtitle: "レイトレーシング 3.0、モバイルの光と影の秩序を再構築。",
+                gpu_detail_p1: "カスタム版Design Graphic Master GPUは、144Hzの滑らかなモーションをサポートするだけでなく、ハードウェアレベルのリアルタイムレイトレーシングを新たな高みに引き上げました。複雑な3Dシーンにおいて、光の反射、屈折、遮蔽を正確にシミュレートし、スクリーン内の世界にリアルな物理的質感を与えます。",
+
+                audio_detail_title: "Dolby Atmos ステレオデュアルスピーカー",
+                audio_detail_subtitle: "音場無界、没入する聴覚。",
+                audio_detail_p1: "FUJI Phone 2は、Dolby Atmos（ドルビーアトモス）向けに基盤アーキテクチャを調整した新世代の高対称性ステレオデュアルスピーカーを搭載しています。映画の中で唸りを上げて飛び去る矢であれ、音楽の中の繊細なボーカルの息遣いであれ、すべての音が3次元空間で正確に定位します。",
+
+                acc_title: "FUJI X-Optics プロ映像キット",
+                acc_subtitle: "手のひらのフラッグシップから、制作の中枢へ。光と影の実体に触れる。",
+                acc_p1: "APO光学設計に基づき、各レンズは3枚の高屈折率特殊ガラスレンズを採用しています。Super EBCナノコーティングは99.9%の光透過率を確保し、物理レベルで分散とゴーストを完全に除去します。",
+                acc_p2: "高強度航空宇宙グレードのアルミニウム合金と肌のような質感のコーティングを採用。高精度のネジマウント設計により、レンズの取り付けが瞬時に位置合わせされ、隙間なくフィットします。",
+                acc_p3: "レンズがねじ込まれた瞬間、DesignOS 2.2がリアルタイムで感知します。システムは自動的に専用のUIインターフェースを呼び出します。",
+                acc_list: "キット内容：FUJI専用映像拡張ケース + フジノンカスタムレンズ（いずれか1つを選択） + レンズ保護バッグ + 影视飓风連名クリーニングクロス。",
+
+                tech_specs_title: "技術仕様",
+                notes_title: "備考と説明",
+            }
+        };
+
+        const priceList = [
+            "12GB + 256GB / 6,499 CNY / 1,299 USD / 1,499 EUR / 199,800 JPY",
+            "12GB + 512GB / 6,999 CNY / 1,399 USD / 1,599 EUR / 214,800 JPY",
+            "16GB + 512GB / 7,499 CNY / 1,499 USD / 1,699 EUR / 229,800 JPY",
+            "16GB + 1TB / 8,499 CNY / 1,699 USD / 1,899 EUR / 259,800 JPY",
+            "16GB + 2TB / 10,499 CNY / 2,099 USD / 2,299 EUR / 319,800 JPY",
+            "24GB + 1TB / 9,299 CNY / 1,849 USD / 2,049 EUR / 281,800 JPY",
+            "24GB + 2TB / 11,299 CNY / 2,249 USD / 2,449 EUR / 341,800 JPY"
+        ];
+
+        const specsList = {
+            zh: {
+                "型号": "FUJI Phone 2 (MRFJPHGL02)",
+                "处理器": "Snapdragon 8 Elite Gen 5",
+                "显卡": "Design Graphic Master Mobile",
+                "NPU": "Design AI Boost 2 Pro Mobile",
+                "内存/闪存": "LPDDR5X / UFS 4.0 Pro",
+                "电池": "6700 mAh (120W Wired / 65W Wireless / 22.5W Reverse)",
+                "重量": "238.2g",
+                "屏幕": "6.9\" Samsung M13 Pro Super AMOLED (2608 x 1204, 416 PPI)",
+                "刷新率": "MORO LTPO+ (1–144Hz)",
+                "后置显示": "1.76 inch",
+                "主摄": "LYT-901 (1-inch, 200MP)",
+                "长焦": "LYT-600 (50MP)",
+                "超广角": "LYT-500 (50MP)",
+                "激光雷达": "Sony SPAD F1 + VCSEL X1 Pro",
+                "系统": "DesignOS 2.2 (Based on Android 16)"
+            },
+            en: {
+                "Model": "FUJI Phone 2 (MRFJPHGL02)",
+                "CPU": "Snapdragon 8 Elite Gen 5",
+                "GPU": "Design Graphic Master Mobile",
+                "NPU": "Design AI Boost 2 Pro Mobile",
+                "RAM / ROM": "LPDDR5X / UFS 4.0 Pro",
+                "Battery": "6700 mAh (120W Wired / 65W Wireless / 22.5W Reverse)",
+                "Weight": "238.2g",
+                "Display": "6.9\" Samsung M13 Pro Super AMOLED (2608 x 1204, 416 PPI)",
+                "Refresh Rate": "MORO LTPO+ (1–144Hz)",
+                "Rear Display": "1.76 inch",
+                "Main Cam": "LYT-901 (1-inch, 200MP)",
+                "Telephoto": "LYT-600 (50MP)",
+                "Ultra-Wide": "LYT-500 (50MP)",
+                "LiDAR": "Sony SPAD F1 + VCSEL X1 Pro",
+                "OS": "DesignOS 2.2 (Based on Android 16)"
+            },
+            jp: {
+                "モデル": "FUJI Phone 2 (MRFJPHGL02)",
+                "プロセッサ": "Snapdragon 8 Elite Gen 5",
+                "GPU": "Design Graphic Master Mobile",
+                "NPU": "Design AI Boost 2 Pro Mobile",
+                "RAM / ROM": "LPDDR5X / UFS 4.0 Pro",
+                "バッテリー": "6700 mAh (120W Wired / 65W Wireless / 22.5W Reverse)",
+                "重量": "238.2g",
+                "画面": "6.9\" Samsung M13 Pro Super AMOLED (2608 x 1204, 416 PPI)",
+                "リフレッシュレート": "MORO LTPO+ (1–144Hz)",
+                "背面画面": "1.76 inch",
+                "メインカメラ": "LYT-901 (1-inch, 200MP)",
+                "望遠": "LYT-600 (50MP)",
+                "超広角": "LYT-500 (50MP)",
+                "LiDAR": "Sony SPAD F1 + VCSEL X1 Pro",
+                "OS": "DesignOS 2.2 (Based on Android 16)"
+            }
+        };
+
+        const footnotes = {
+            zh: [
+                "显示屏采用圆角设计，按照标准矩形测量时，屏幕对角线长度为 6.9 英寸（由于圆角及挖孔存在，实际可视区域略小）。",
+                "8.42mm 机身厚度数据不含镜头模组凸起部分。厚度及重量对比对象为行业前代及主流旗舰，数据来源于 MORO x FUJI 联合实验室测试结果。",
+                "屏幕分辨率对应标准矩形，实际有效像素受圆角影响略少。",
+                "Tandem OLED 峰值亮度数据来源于 MORO x FUJI 联合实验室。7600 nits 为 1% APL 局部峰值亮度，3500 nits 为高 APL 峰值亮度，2000 nits 为全屏最高激发亮度。不同使用环境下亮度表现可能存在差异，请以实际为准。",
+                "MORO LTPO+ 技术支持 1-144Hz 多档位自适应刷新率。刷新率切换逻辑会根据应用界面及操作环境动态调整。",
+                "LOFIC 超高动态技术在检测到高光比场景时自动触发，支持包括舞台、日出、夜景在内的多种预设场景。实际效果受拍摄环境及模式影响。",
+                "LYT-901 传感器功耗降低数据对比对象为前代影像旗舰，由 MORO x FUJI 联合实验室在受控环境下测试所得。",
+                "CPU、GPU、AI 相关性能数据及百分比提升由高通（Qualcomm）提供，对比基准为上一代骁龙移动平台。",
+                "6700mAh 为电池典型容量值。充电功率数据基于搭配官方 120W 有线或 65W 无线充电套装测试所得，数据来源于 MORO x FUJI 联合实验室。实际功率受环境温度、电池初始电量等因素影响。",
+                "电池循环寿命指在实验室标准环境下循环 1600 次后，电池容量仍 ≥80%，相关数据来源于 MORO x FUJI 联合实验室。实际寿命受用户充电习惯、环境温度等因素差异影响。",
+                "FUJI HARIKEN 专业视频 App 的部分高级功能（如 10-bit Log 高码率记录）建议搭配高速 UFS 4.0 Pro 存储机型使用以获得最佳录制稳定性。",
+                "FUJI X-Optics 专业影像套装及镜头模组为选配件，需配合专用影像扩展壳使用。",
+                "机身防溅、防水功能在 IEC 60529 标准下达到 IP68/IP69 级别。防护性能可能因日常磨损而下降，请勿在潮湿状态下充电，液体浸入导致的损坏不在保修范围之内。",
+                "DesignOS 2.2 系统内涉及的 AI 生成图像功能，部分由 AI 大模型计算生成，实际呈现效果以实物为准。",
+                "护眼相关认证由专业机构提供，本产品非医疗器械，不具备临床诊断或治疗功能，相关健康提示仅供参考。",
+                "1.76 英寸灵动背屏采用 OLED 材质，显示效果受环境光线及系统亮度设置影响。其自拍监看及状态看板功能需在 DesignOS 2.2 对应拍摄模式下开启，实际显示效果以实物为准。"
+            ],
+            en: [
+                "The display adopts a rounded corner design. When measured as a standard rectangle, the diagonal length is 6.9 inches (actual viewable area is slightly smaller due to rounded corners and punch-hole).",
+                "8.42mm thickness excludes camera bump. Comparisons sourced from MORO x FUJI Labs.",
+                "Screen resolution corresponds to standard rectangle.",
+                "Tandem OLED brightness data from MORO x FUJI Labs. 7600 nits is 1% APL local peak. Actual brightness varies by environment.",
+                "MORO LTPO+ supports 1-144Hz adaptive refresh.",
+                "LOFIC technology triggers automatically in high contrast scenes.",
+                "LYT-901 power consumption data compared to previous generation flagships.",
+                "CPU/GPU/AI data provided by Qualcomm.",
+                "6700mAh is typical value. Charging power based on official chargers.",
+                "Battery retains ≥80% capacity after 1600 cycles.",
+                "Some FUJI HARIKEN features require UFS 4.0 Pro models.",
+                "FUJI X-Optics kit is sold separately.",
+                "IP68/IP69 water resistance rating. Liquid damage not covered by warranty.",
+                "AI generated images are simulated.",
+                "Eye protection certifications provided by professional agencies.",
+                "The 1.76-inch dynamic rear display uses OLED material; visibility depends on ambient light and brightness settings. Selfie monitoring and dashboard features must be enabled in DesignOS 2.2 shooting modes. Actual experience may vary."
+            ],
+            jp: [
+                "ディスプレイは角丸デザインを採用しています。標準的な長方形として測定した場合、対角線の長さは6.9インチです（角丸やパンチホールの存在により、実際の可視領域はわずかに小さくなります）。",
+                "8.42mmの厚さにはカメラモジュールの突起は含まれません。",
+                "画面解像度は標準的な長方形に対応します。",
+                "Tandem OLEDの輝度データはMORO x FUJI連合実験室によるものです。7600 nitsは1% APLの局所ピーク輝度です。",
+                "MORO LTPO+技術は1-144Hzの可変リフレッシュレートをサポートします。",
+                "LOFIC技術は高コントラストシーンで自動的にトリガーされます。",
+                "LYT-901センサーの消費電力データは前世代のフラッグシップとの比較です。",
+                "CPU、GPU、AI関連のデータはQualcommによって提供されています。",
+                "6700mAhはバッテリーの標準容量です。",
+                "バッテリーは1600回のサイクル後も80%以上の容量を維持します。",
+                "FUJI HARIKENの一部の機能は高速UFS 4.0 Proモデルでの使用を推奨します。",
+                "FUJI X-Opticsキットは別売りです。",
+                "IP68/IP69レベルの防塵防水性能。液体による損傷は保証対象外です。",
+                "AI生成画像はシミュレーションです。",
+                "アイケア関連の認証は専門機関によって提供されています。",
+                "1.76インチのダイナミックリアディスプレイはOLED素材を採用しており、表示効果は環境光やシステムの輝度設定に影響されます。セルフィー監視およびステータス看板機能は、DesignOS 2.2の対応する撮影モードで有効にする必要があり、実際の表示効果は実物に準じます。"
+            ]
+        };
+
+        function setLang(lang) {
+            // Update active button state
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                if(btn.dataset.active === lang) {
+                    btn.classList.remove('text-gray-400');
+                    btn.classList.add('text-black', 'font-bold');
+                } else {
+                    btn.classList.add('text-gray-400');
+                    btn.classList.remove('text-black', 'font-bold');
+                }
+            });
+
+            // Update Text Content
+            const t = translations[lang];
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) el.textContent = t[key];
+            });
+
+            // Update Specs List
+            const specsContainer = document.getElementById('specs-table');
+            specsContainer.innerHTML = '';
+            Object.entries(specsList[lang]).forEach(([key, value]) => {
+                const div = document.createElement('div');
+                div.innerHTML = `<span class="block text-gray-500 uppercase text-xs mb-1">${key}</span><span class="font-bold">${value}</span>`;
+                specsContainer.appendChild(div);
+            });
+
+            // Update Footnotes
+            const notesContainer = document.getElementById('footnotes-list');
+            notesContainer.innerHTML = '';
+            footnotes[lang].forEach(note => {
+                const li = document.createElement('li');
+                li.textContent = note;
+                notesContainer.appendChild(li);
+            });
+        }
+
+        // Render Prices (Static across langs mostly, but logic could be added)
+        const priceContainer = document.getElementById('pricing-list');
+        priceList.forEach(price => {
+            const div = document.createElement('div');
+            div.className = "border-b border-gray-200 py-2 flex justify-between items-center";
+            const parts = price.split(' / ');
+            div.innerHTML = `<span class="font-bold">${parts[0]}</span> <span class="text-right text-gray-600 text-xs md:text-sm">${parts.slice(1).join(' / ')}</span>`;
+            priceContainer.appendChild(div);
+        });
+
+        // Initialize with Chinese
+        setLang('zh');
+
+        // Scroll Animation Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    </script>
+</body>
+</html>
